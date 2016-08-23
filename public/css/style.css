@@ -1,0 +1,18 @@
+#container{
+  margin-left:200px;
+  height:800px;
+  width:600px;
+  background-color: yellow;
+}
+ul{
+  list-style: none;
+}
+#art{
+  height:500px;
+  width:500px;
+  vertical-align: middle;
+}
+#avatar{
+  height:20px;
+  width:20px;
+}
