@@ -40,15 +40,14 @@ getUserByUsername:function(username,doneCb){
 comparePassword:function(candidatepassword,username,doneCb){
 	const conn=createConnection();
 	conn.connect();
-	var queryString="SELECT password FROM usersinfo WHERE username='"+username+"';";
+	var queryString="SELECT * FROM usersinfo WHERE username='"+username+"';";
 	conn.query(queryString,function(err,row,field){
 		if(err)
 			console.log(err);
-
-        if(row[0].password==candidatepassword)
-         doneCb(1);
+        if(row[0].password===candidatepassword)
+         doneCb(row[0].id);
         else
-          doneCb(0);
+          doneCb();
 	});
 	conn.end();
 },
@@ -61,6 +60,42 @@ getUserById:function(serial,doneCb){
 		if(err)
 			console.log(err);
 		doneCb(err,row[0]);
+	})
+	conn.end();
+},
+
+savefile:function(userfile,doneCb){
+	const conn=createConnection();
+	conn.connect();
+	var queryString="UPDATE usersinfo SET avatar='"+userfile.path+"' WHERE username='"+userfile.user+"';";
+	conn.query(queryString,function(err,row,field){
+		if(err)
+			console.log(err);
+		doneCb(err,row[0]);
+	})
+	conn.end();
+},
+
+saveimg:function(userimg,doneCb){
+	const conn=createConnection();
+	conn.connect();
+	var queryString="INSERT INTO usruploads (id,image,category,caption)VALUES("+userimg.id+",'"+userimg.path+"','"+userimg.category+"','"+userimg.caption+"');";
+	conn.query(queryString,function(err,row,field){
+		if(err)
+			console.log(err);
+		doneCb(err,row[0]);
+	})
+	conn.end();
+},
+
+getImages:function(doneCb){
+	const conn=createConnection();
+	conn.connect();
+	var queryString="SELECT usersinfo.id,usersinfo.username,usersinfo.avatar,usruploads.image,usruploads.usrcomm,usruploads.usrsnme,usruploads.caption,usruploads.username FROM usersinfo,usruploads WHERE usersinfo.id=usruploads.id";
+	conn.query(queryString,function(err,row,field){
+		if(err)
+			console.log(err);
+		doneCb(err,row);
 	})
 	conn.end();
 }
