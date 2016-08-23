@@ -1,0 +1,36 @@
+<h2 class="page-header">Welcome {{usr.username}}</h2>
+<image src={{usr.avatar}} style="height=100px;width=100px;">
+
+
+
+<form method="post" enctype="multipart/form-data" action="/users/profile">
+    <div class="form-group">
+    <label>Upload your avatar</label>
+    <input type="file" class="form-control" name="avatar" >
+  <button type="submit" class="btn btn-default">Upload</button>
+</form>
+
+<h2>or</h2>
+
+
+<form method="post" enctype="multipart/form-data" action="/users/usrimg">
+    <div class="form-group">
+       <label>Upload your art</label>
+       <input type="file" class="form-control" name="art" >  
+       <label>select category</label> 
+       <br>   
+       <label class="radio-inline">
+       <input type="radio" name="Dance">Dance 
+       </label>
+       <label class="radio-inline">
+       <input type="radio" name="Sketching">Sketching
+       </label>
+       <label class="radio-inline">
+       <input type="radio" name="cooking">cooking
+       </label> 
+       <br>
+       <label>Caption (optional)</label>
+       <input type="text" class="form-control" name="caption" >
+    </div>
+       <button type="submit" class="btn btn-default">Upload</button>
+</form>

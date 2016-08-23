@@ -1,0 +1,17 @@
+ <h2 class="page-header">here are your stories</h2>
+  <ul>
+    <li>
+     <div id="container">
+       <h3>{{dta.username}}</h3>
+       <img src={{dta.avatar}} id="avatar">
+      <image src={{dta.image}} id="art">
+       <form method="post" enctype="multipart/form-data" action="/users/comments">
+       <div class= "form-group">
+      <label>Comments</label>
+    <input type="text" class="form-control" name="comm" >
+    <button type="submit" class="btn btn-default">Add</button>
+   </form>
+     </div>
+   </li>
+  </ul>
+
