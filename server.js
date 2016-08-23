@@ -12,12 +12,6 @@ var md5=require('md5');
 var path=require('path');
 
 
-/*var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'anubhuti',
-  database : 'cbprojectdb'
-});
-*/
 
 var routes=require('./routes/index');
 var users=require('./routes/users');
