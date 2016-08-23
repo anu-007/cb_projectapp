@@ -4,6 +4,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var db = require('../dbmodel/dbhandler');
 var md5=require('md5');
+var multer=require('multer');
+var uploads=multer({ dest: './uploads/'});
 
 // Register
 router.get('/register', function(req, res){
@@ -12,8 +14,30 @@ router.get('/register', function(req, res){
 
 // Login
 router.get('/login', function(req, res){
-	res.render('login');
+	res.render('login',{user:req.username});
 });
+
+//my home
+router.get('/myhome',function(req,res){
+	res.render('myhome',{usr:req.user});
+});
+
+//stories
+router.get('/stories',function(req,res){
+ console.log(req);
+  db.getImages(function(err,data){
+  if(err)
+    console.log(err);
+    console.log(data);                //array of rows images
+     res.render('stories',{dta:data[0]});
+  })
+ // console.log(data);              //undefined data here
+  //res.render('stories',{usr:req.user})
+  //console.log(dta);
+  //dta.push(req.user);
+  //res.render('stories',dta);
+});
+
 
 // Register User
 router.post('/register', function(req, res){
@@ -63,7 +87,6 @@ passport.use(new LocalStrategy(
    db.getUserByUsername(username,function(err,result){
      if(err)
      	console.log(err);
-    
 
      if(!result){
        return done(null,false,{message:'Unknown User'});
@@ -72,33 +95,32 @@ passport.use(new LocalStrategy(
      pass=md5(password);
       
       db.comparePassword(pass,result.username,function(result){
-      	if(!result)
-      {console.log('sjf');
-  return done(null,false,{message:'Incorrect password'});}
+      	if(result==null)
+          return done(null,false,{message:'Incorrect password'});
         else
-       console.log('djf');
-          return done(null,result);
+          return done(null,result);       
        });
+
      });
     }
   ));
 
 passport.serializeUser(function(result,done) {
-	console.log(result);
+	console.log(result);           //returns id of user logged in
   done(null, result);
 });
 
 passport.deserializeUser(function(id,done ) {
   db.getUserById(id, function(err, result) {
-  	console.log(result);
+  	console.log(result);         //returns which packet is thrown
     done(err, result);
   });
 });
 
-router.post('/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login',failureFlash: true}),
+router.post('/login',passport.authenticate('local', {successRedirect:'/users/myhome', failureRedirect:'/users/login',failureFlash: true}),
   function(req, res) {
-    res.redirect('/'); 
+  	console.log('them');
+    res.redirect('/users/stories'); 
   });
 
 router.get('/logout', function(req, res){
@@ -109,4 +131,37 @@ router.get('/logout', function(req, res){
 	res.redirect('/users/login');
 });
 
-module.exports = router;
+router.post('/profile', uploads.single('avatar'), function(req,res){
+	console.log(req.body);                //contain caption
+	 var avatardata={
+	 	path:req.file.path,
+	 	user:req.user.username
+	 }
+	 db.savefile(avatardata,function(err,data){
+       if(err)
+       	console.log(err);
+        console.log(data);           //undefined
+	 });
+	res.status(204).end();
+});
+
+router.post('/usrimg',uploads.single('art'),function(req,res){
+    var cat=Object.keys(req.body);
+     var imgdata={
+     	id:req.user.id,
+     	path:req.file.path,
+     	caption:req.body.caption,
+     	category:cat[0],
+     } 
+     db.saveimg(imgdata,function(err,data){
+     	if(err)
+     		console.log(err);
+     	console.log(data);
+     })
+  });
+  
+  router.post('/comments',function(req,res){
+    console.log(req.body);
+  })
+  
+  module.exports = router;
