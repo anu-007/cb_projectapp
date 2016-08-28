@@ -2,14 +2,20 @@
 <html>
 <head>
 <title>project app</title>
-<csript src="/js/bootstrap.js"/>
-<link rel="stylesheet" href="/css/bootstrap.css"/>
-<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/font-awesome.min.css"></link>
+<script src="/js/jquery-3.1.0.js"/>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/materialize.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.css"></link>
+<link rel="stylesheet" href="/css/style.css"></link>
+<link rel="stylesheet" type="text/css" href="/css/ghpages-materialize.css">
 </head>
 <body>
-  <div class="container">
       <div class="header clearfix">
         <nav>
+          <ul>
+              <li class="fllaunt"><h3 style="margin-left:20px; margin-top:10px; margin-bottom:0px;">Fllaunt</h3></li>
+          </ul>
           <ul class="nav nav-pills pull-right">
             {{#if user}}
               <li role="presentation"><a href="/users/stories">Stories</a></li>
@@ -21,7 +27,6 @@
             {{/if}}
           </ul>
         </nav>
-        <h3 class="text-muted">Cb_project app</h3>
       </div>
 
 
@@ -44,7 +49,5 @@
 
         
       </div>
-      </div>
-      <script src="/js/jquery-3.1.0.js"/>
 </body>
 </html>
