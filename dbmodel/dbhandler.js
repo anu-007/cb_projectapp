@@ -40,7 +40,7 @@ getUserByUsername:function(username,doneCb){
 comparePassword:function(candidatepassword,username,doneCb){
 	const conn=createConnection();
 	conn.connect();
-	var queryString="SELECT * FROM usersinfo WHERE username='"+username+"';";
+	var queryString="SELECT usersinfo.* FROM usersinfo WHERE username='"+username+"';";
 	conn.query(queryString,function(err,row,field){
 		if(err)
 			console.log(err);
@@ -91,11 +91,23 @@ saveimg:function(userimg,doneCb){
 getImages:function(doneCb){
 	const conn=createConnection();
 	conn.connect();
-	var queryString="SELECT usersinfo.id,usersinfo.username,usersinfo.avatar,usruploads.image,usruploads.usrcomm,usruploads.usrsnme,usruploads.caption,usruploads.username FROM usersinfo,usruploads WHERE usersinfo.id=usruploads.id";
+	var queryString="SELECT usersinfo.username,usersinfo.avatar,usruploads.image,usruploads.caption FROM usersinfo,usruploads WHERE usersinfo.id=usruploads.id";
 	conn.query(queryString,function(err,row,field){
 		if(err)
 			console.log(err);
 		doneCb(err,row);
+	})
+	conn.end();
+},
+
+rate:function(val,doneCb){
+	const conn=createConnection();
+	conn.connect();
+	var queryString="INSERT INTO usruploads(star) VALUES("+val.str+");";
+	conn.query(queryString,function(err,row,field){
+		if(err)
+			console.log(err);
+	    console.log(row);
 	})
 	conn.end();
 }
