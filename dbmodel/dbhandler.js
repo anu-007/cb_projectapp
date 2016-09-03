@@ -67,7 +67,7 @@ getUserById:function(serial,doneCb){
 savefile:function(userfile,doneCb){
 	const conn=createConnection();
 	conn.connect();
-	var queryString="UPDATE usersinfo SET avatar='"+userfile.path+"' WHERE username='"+userfile.user+"';";
+	var queryString="UPDATE usersinfo SET avatar='"+userfile.path+"',status='"+userfile.Status+"' WHERE username='"+userfile.user+"';";
 	conn.query(queryString,function(err,row,field){
 		if(err)
 			console.log(err);
@@ -79,7 +79,7 @@ savefile:function(userfile,doneCb){
 saveimg:function(userimg,doneCb){
 	const conn=createConnection();
 	conn.connect();
-	var queryString="INSERT INTO usruploads (id,image,category,caption)VALUES("+userimg.id+",'"+userimg.path+"','"+userimg.category+"','"+userimg.caption+"');";
+	var queryString="INSERT INTO usruploads (id,image,category,caption)VALUES("+userimg.id+",'"+userimg.path+"','"+userimg.category+"','"+userimg.caption+"') ;";
 	conn.query(queryString,function(err,row,field){
 		if(err)
 			console.log(err);
@@ -91,7 +91,7 @@ saveimg:function(userimg,doneCb){
 getImages:function(doneCb){
 	const conn=createConnection();
 	conn.connect();
-	var queryString="SELECT usersinfo.username,usersinfo.avatar,usruploads.image,usruploads.caption FROM usersinfo,usruploads WHERE usersinfo.id=usruploads.id";
+	var queryString="SELECT usersinfo.username,usersinfo.avatar,usruploads.image,usruploads.caption,usruploads.category,usruploads.serial,usruploads.star FROM usersinfo,usruploads WHERE usersinfo.id=usruploads.id ORDER BY serial DESC";
 	conn.query(queryString,function(err,row,field){
 		if(err)
 			console.log(err);
@@ -103,11 +103,10 @@ getImages:function(doneCb){
 rate:function(val,doneCb){
 	const conn=createConnection();
 	conn.connect();
-	var queryString="INSERT INTO usruploads(star) VALUES("+val.str+");";
+	var queryString="UPDATE usruploads SET star="+val.str+" WHERE serial="+val.serial+";";
 	conn.query(queryString,function(err,row,field){
 		if(err)
 			console.log(err);
-	    console.log(row);
 	})
 	conn.end();
 }
