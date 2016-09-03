@@ -160,17 +160,6 @@ label.star:before {
         font-family: 'Montez', cursive;
         font-size: 50px;
     }
-    .img_container > .overlay{
-        position: absolute;
-        width:100%;
-        height: 100%;
-        background-color: #000;
-        opacity: 0;
-        transition: opacity .5s;
-    }
-    .img_container:hover > .overlay{
-           opacity: 0.5;
-    }
 
 /*myhome styling*/
 .personal_contents{
