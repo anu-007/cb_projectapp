@@ -1,9 +1,9 @@
-<ul>
-  {{#each dta}}
-  <li>
+
+  {{#each this.dta}}
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
-          <div class="card">  
+          <div class="card"> 
+
             <div class="user_info">
               <div class="dp no-padding no-margin"><img src={{avatar}}></div>
               <div class="profile_name">{{username}}</div>
@@ -19,30 +19,24 @@
 
             <div class="art_tag">
               <div class="chip">
-                <i class="close material-icons">painting</i>
-              </div>
-              <div class="chip">
-                <i class="close material-icons">photography</i>
+                <i class="close material-icons">{{category}}</i>
               </div>
             </div>
-
-            <div class="ratings">
-              <form method="post" action="/users/star">
-                <input class="star star-5" id="star-5" type="radio" name="5"/>
-                  <label class="star star-5" for="star-5"></label>
-                <input class="star star-4" id="star-4" type="radio" name="4"/>
-                  <label class="star star-4" for="star-4"></label>
-                <input class="star star-3" id="star-3" type="radio" name="3"/>
-                  <label class="star star-3" for="star-3"></label>
-                <input class="star star-2" id="star-2" type="radio" name="2"/>
-                  <label class="star star-2" for="star-2"></label>
-                <input class="star star-1" id="star-1" type="radio" name="1"/>
-                  <label class="star star-1" for="star-1"></label>
-              </form> 
+            <div class="ratings" >
+              <form method="post" action="/users/star"> 
+                <input class="star star-5" id="{{serial}}-5" type="radio" onclick="this.form.submit()" name="5" value="{{serial}}"/>
+                  <label class="star star-5" for="{{serial}}-5" ></label> 
+                <input class="star star-4" id="{{serial}}-4" type="radio" onclick="this.form.submit()" name="4" value="{{serial}}"/>
+                  <label class="star star-4" for="{{serial}}-4"></label>
+                <input class="star star-3" id="{{serial}}-3" type="radio" onclick="this.form.submit()" name="3" value="{{serial}}"/>
+                  <label class="star star-3" for="{{serial}}-3"></label>
+                <input class="star star-2" id="{{serial}}-2" type="radio" onclick="this.form.submit()" name="2" value="{{serial}}"/>
+                  <label class="star star-2" for="{{serial}}-2"></label>
+                <input class="star star-1" id="{{serial}}-1" type="radio" onclick="this.form.submit()" name="1" value="{{serial}}"/>
+                  <label class="star star-1" for="{{serial}}-1"></label>
+                </form>  
             </div>
           </div>  
       </div>
-    </div>  
-  </li>
+    </div>
   {{/each}}
-</ul>
