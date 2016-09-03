@@ -195,17 +195,6 @@ label.star:before {
     width: 100%;
 }
 
-.upload_art{
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 10px;
-    padding: 5px;
-    background-color: #eee;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
 
 .upload_avatar{
     width:250px;
@@ -231,6 +220,7 @@ label.star:before {
         height: auto;
         width: 40px;
         display: flex;
+        float: right;
         flex-direction: row;
         align-items: center;
         justify-content: center;
@@ -269,3 +259,14 @@ label.star:before {
       background-position: 0 -100%;
       color: #2590EB;
     }
+
+
+.user_status > p{
+  font-family: 'Playball', cursive;
+  margin-top: 10px;
+  font-size: 3em;
+}
+
+.upload_art{
+  margin-top:10px;
+}
