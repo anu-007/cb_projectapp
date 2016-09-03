@@ -109,6 +109,18 @@ rate:function(val,doneCb){
 			console.log(err);
 	})
 	conn.end();
+},
+
+statusUpdate:function(userfile,doneCb){
+	const conn=createConnection();
+	conn.connect();
+	var queryString="UPDATE usersinfo SET status='"+userfile.status+"' WHERE username='"+userfile.user+"';";
+	conn.query(queryString,function(err,row,field){
+		if(err)
+			console.log(err);
+		doneCb(err,row[0]);
+	})
+	conn.end();
 }
 
 }
