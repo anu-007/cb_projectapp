@@ -86,7 +86,7 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 
-
+app.set('port', process.env.PORT || 5555);
 
 app.listen(5555, function(){
   console.log('Server started on port 5555');
