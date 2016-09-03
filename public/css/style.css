@@ -1,12 +1,17 @@
+@import 'https://fonts.googleapis.com/css?family=Montez';
+@import 'https://fonts.googleapis.com/css?family=Merienda+One';
 ul{
   padding:0px;
-	 list-style-type: none; 
+   list-style-type: none;
 }
 
 .fllaunt{
-  margin:0px;
+    font-family: 'Merienda One', cursive;
+  margin-left:20px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
 }
-
 .no-padding{
   padding: 0px;
 }
@@ -105,9 +110,162 @@ input.star-5:checked ~ label.star:before {
 
 input.star-1:checked ~ label.star:before { color: #F62; }
 
-label.star:hover { transform: scale(1.3); }
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
 
 label.star:before {
   content: '\f006';
   font-family: FontAwesome;
 }
+
+.fllaunt a{
+    text-decoration: none;
+}
+    .fllaunt a:hover{
+        background-color: inherit;
+        color: inherit;
+    }
+
+.index_message{
+    text-align: center;
+    font-family: 'Montez', cursive;
+    font-size: 50px;
+}
+
+.categories_container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:100%;
+}
+    .categories_container > div{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        height: inherit;
+    }
+        .img_container > img{
+            width:100%;
+            transition: all .5s;
+        }
+        .img_container:hover > img{
+            transform: scale(1.1);
+        }
+
+        .img_container{
+            overflow: hidden;
+        }
+
+    .category_title{
+        font-family: 'Montez', cursive;
+        font-size: 50px;
+    }
+    .img_container > .overlay{
+        position: absolute;
+        width:100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0;
+        transition: opacity .5s;
+    }
+    .img_container:hover > .overlay{
+           opacity: 0.5;
+    }
+
+/*myhome styling*/
+.personal_contents{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+.user_name{
+    overflow: hidden;
+    height: 100%;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+}
+
+.user_image{
+    border-radius: 10px;
+    width: 100%;
+}
+
+.upload_art{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #eee;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.upload_avatar{
+    width:250px;
+    height: 50px;
+    padding: 5px;
+    background-color: #eee;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+    .upload_avatar > p{
+        color: #aaa;
+        font-style: italic;
+        font-weight: 500;
+        padding-top: 10px;
+        padding-left: 10px;
+        float: left;
+        font-size: 1.2em;
+    }
+    .wrapper {
+        margin-right: 5px;
+        height: auto;
+        width: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .wrapper > form{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .wrapper .file-upload {
+        height: 40px;
+        width: 40px;
+      border-radius: 100px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 4px solid #FFFFFF;
+      overflow: hidden;
+      background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
+      background-size: 100% 200%;
+      transition: all 1s;
+      color: #FFFFFF;
+      font-size: 20px;
+    }
+    .wrapper .file-upload input[type='file'] {
+      height: 40px;
+      height: 40px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .wrapper .file-upload:hover {
+      background-position: 0 -100%;
+      color: #2590EB;
+    }
