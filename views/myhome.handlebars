@@ -1,20 +1,6 @@
 <div class="personal_contents">
     <div class="col-xs-6 col-sm-6 col-md-4  col-lg-3 col-md-offset-3 col-lg-offset-4">
-        <img style="margin-bottom:10px;" class="user_image" src={{usr.avatar}}>
-        <div class="upload_avatar">
-            <p>
-                upload you avatar
-            </p>
-            <div class="wrapper "> 
-                <form method="post" enctype="multipart/form-data" action="/users/profile" onsubmit="window.location.reload(true)">
-                    <div class="file-upload">
-                        <input type="file" class="form-control" onchange="this.form.submit()"  name="avatar"/>
-                        <i class="fa fa-arrow-up"></i>
-                    </div> 
-                </form>
-          
-            </div>    
-        </div>
+        <img class="user_image" src={{usr.avatar}}>
     </div>
     <div class="col-xs-6 col-sm-6  col-md-4 col-lg-3">
         <div class="user_name">
@@ -22,40 +8,16 @@
         </div>
     </div>
 </div>
-<hr style="margin:0px; padding:0px;">
-<hr style="margin:0px; padding:0px;">
-
-
-<div class="user_status col-md-offset-3 col-lg-offset-4">
-  <p>{{usr.status}}</p>
-  <div class="input-group">
-    <form method="post"  action="/users/status">
-      <input type="text" class="form-control" placeholder="Update your description" name="status">
-        <button class="btn btn-default" type="Submit">Update</button>
-      </form>
+<div class="upload_avatar col-xs-offset-1 col-sm-offset-1 col-md-offset-5 col-lg-offset-5">
+    <p>
+        upload you avatar
+    </p>
+    <div class="wrapper ">
+        <form method="post" enctype="multipart/form-data" action="/users/profile" onsubmit="window.location.reload(true)">
+            <div class="file-upload">
+                <input type="file" class="form-control" onchange="this.form.submit()"  name="avatar"/>
+                <i class="fa fa-arrow-up"></i>
+            </div>
+        </form>
     </div>
-</div>
-
-<div class="upload_art col-xs-12 col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
-<form method="post" enctype="multipart/form-data" action="/users/usrimg">
-    <div class="form-group">
-       <label>Upload your art</label>
-       <input type="file" class="form-control" name="art" >  
-       <label>select category</label> 
-       <br>   
-       <label class="radio-inline">
-       <input type="radio" name="Dance">Dance 
-       </label>
-       <label class="radio-inline">
-       <input type="radio" name="Sketching">Sketching
-       </label>
-       <label class="radio-inline">
-       <input type="radio" name="cooking">cooking
-       </label> 
-       <br>
-       <label>Caption (optional)</label>
-       <input type="text" class="form-control" name="caption" >
-    </div>
-       <button type="submit" class="btn btn-default">Upload</button>
-</form>
 </div>
