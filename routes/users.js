@@ -151,7 +151,7 @@ router.post('/status', function(req,res){
    db.statusUpdate(avatardata,function(err,data){
        if(err)
         console.log(err);
- //       console.log(data);           //undefined
+ //       console.log(data);          
    });
    req.flash('success_msg', 'updated successfully');
   res.status(204).end();
@@ -175,21 +175,19 @@ router.post('/usrimg',uploads.single('art'),function(req,res){
   });
 
 router.post('/star',function(req,res){
-  console.log(req.body);
+  //console.log(req.body);
   db.getusr(req.body[Object.keys(req.body)[0]],function(err,data){
     if(err)
       console.log(err);
 
     var stardta={
     num:data.nousr+1,
-    str:Object.keys(req.body)[0],
     serial:req.body[Object.keys(req.body)[0]],
-    avg:Object.keys(req.body)[0]/(data.nousr+1)
+    avg:data.star+(Object.keys(req.body)[0]-data.star)/(data.nousr+1)
      }
   db.rate(stardta,function(err,data){
     if(err)
       console.log(err);
-  //  console.log(data);
   })
   })
 
