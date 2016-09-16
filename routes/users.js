@@ -27,8 +27,7 @@ router.get('/stories',function(req,res){
   db.getImages(function(err,data){
   if(err)
     console.log(err);
-    console.log(data);
-    var dta=data
+    var dta=data;
      res.render('stories',{dta:dta})                //array of rows images
     });
 });
@@ -67,9 +66,9 @@ router.post('/register', function(req, res){
     };
 
     db.createUser(newUser, function(err, data){
-      if(err)
+      if(err) 
         console.log(err);
-      console.log(data);     //user here is undefined
+        console.log(data);     //user here is undefined
     });
 
     req.flash('success_msg', 'You are registered and can now login');
@@ -88,14 +87,14 @@ passport.use(new LocalStrategy(
      if(!result){
        return done(null,false,{message:'Unknown User'});
      }
-
+     
      pass=md5(password);
-
+      
       db.comparePassword(pass,result.username,function(result){
         if(result==null)
           return done(null,false,{message:'Incorrect password'});
         else
-          return done(null,result);
+          return done(null,result);       
        });
 
      });
@@ -116,8 +115,8 @@ passport.deserializeUser(function(id,done ) {
 
 router.post('/login',passport.authenticate('local', {successRedirect:'/users/stories', failureRedirect:'/users/login',failureFlash: true}),
   function(req, res) {
-    console.log('them');
-    res.redirect('/users/stories');
+  //  console.log('them');
+    res.redirect('/users/stories'); 
   });
 
 router.get('/logout', function(req, res){
@@ -129,7 +128,7 @@ router.get('/logout', function(req, res){
 });
 
 router.post('/profile', uploads.single('avatar'), function(req,res){
-  console.log(req.body);                //contain caption
+  //console.log(req.body);                //contain status
    var avatardata={
     path:req.file.path,
     user:req.user.username
@@ -137,10 +136,27 @@ router.post('/profile', uploads.single('avatar'), function(req,res){
    db.savefile(avatardata,function(err,data){
        if(err)
         console.log(err);
-        console.log(data);           //undefined
+ //       console.log(data);           
    });
   res.status(204).end();
 });
+
+router.post('/status', function(req,res){
+  console.log(req.body.status); 
+  console.log(req.user.username);               //contain status
+   var avatardata={
+    user:req.user.username,
+    status:req.body.status
+   }
+   db.statusUpdate(avatardata,function(err,data){
+       if(err)
+        console.log(err);
+ //       console.log(data);           //undefined
+   });
+   req.flash('success_msg', 'updated successfully');
+  res.status(204).end();
+});
+
 
 router.post('/usrimg',uploads.single('art'),function(req,res){
     var cat=Object.keys(req.body);
@@ -149,7 +165,7 @@ router.post('/usrimg',uploads.single('art'),function(req,res){
       path:req.file.path,
       caption:req.body.caption,
       category:cat[0],
-     }
+     } 
      db.saveimg(imgdata,function(err,data){
       if(err)
         console.log(err);
@@ -159,19 +175,26 @@ router.post('/usrimg',uploads.single('art'),function(req,res){
   });
 
 router.post('/star',function(req,res){
-  console.log("in the star end point");
-//   console.log(req);
+  console.log(req.body);
+  db.getusr(req.body[Object.keys(req.body)[0]],function(err,data){
+    if(err)
+      console.log(err);
 
-  var stardta={
-    str:Object.keys(req.body)[0]
-  }
+    var stardta={
+    num:data.nousr+1,
+    str:Object.keys(req.body)[0],
+    serial:req.body[Object.keys(req.body)[0]],
+    avg:Object.keys(req.body)[0]/(data.nousr+1)
+     }
   db.rate(stardta,function(err,data){
     if(err)
       console.log(err);
   //  console.log(data);
   })
+  })
+
  res.status(204).end();
 });
 
-
+  
  module.exports = router;
