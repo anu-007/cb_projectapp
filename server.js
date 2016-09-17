@@ -10,7 +10,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mysql=require('mysql');
 var md5=require('md5');
 var path=require('path');
-
+var handlebars=require('handlebars');
 
 
 var routes=require('./routes/index');
@@ -26,7 +26,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');
 
-
+           handlebars.registerHelper('ifCond', function(v1, v2, options) {
+                if(v1 === v2) {
+                 return options.fn(this);
+                 }
+               return options.inverse(this);
+             });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
