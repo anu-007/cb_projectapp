@@ -133,6 +133,18 @@ getusr:function(serial,doneCb){
 		doneCb(err,row[0]);
 	})
 	conn.end();
+},
+
+gettop:function(doneCb){
+	const conn=createConnection();
+	conn.connect();
+	var queryString="SELECT image,caption FROM usruploads where nousr >= 2 ORDER BY star DESC LIMIT 7;";
+	conn.query(queryString,function(err,row,field){
+		if(err)
+			console.log(err);
+		doneCb(err,row);
+	})
+	conn.end();
 }
 
 }
