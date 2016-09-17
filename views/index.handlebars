@@ -1,83 +1,11 @@
-<!--<div class="index_message col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
-    Fllaunt your art to the world
-</div>-->
+{{#each this.dta}}
+
 <div class="image-gallery">
     <div class="image_container">
-       <img src="/../uploads/pic1.jpg" alt="" />
+       <img src={{image}} alt="" />
        <div class="mask">
-          <h2>Username</h2>
-          <p>Caption</p>
+          <p>{{caption}}</p>
         </div>
     </div>
-    <div class="image_container">
-        <img src="/../uploads/pic2.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/dance.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/music.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/photo.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/sketching.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/pic6.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/pic5.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/cook.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/pic4.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-    <div class="image_container">
-        <img src="/../uploads/pic3.jpg" alt="" />
-        <div class="mask">
-           <h2>Username</h2>
-           <p>Caption</p>
-         </div>
-    </div>
-
 </div>
+{{/each}}
