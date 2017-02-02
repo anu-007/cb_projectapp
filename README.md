@@ -15,13 +15,13 @@
 5. Open the link localhost:5555 on your browser
 
 #Screenshots
-![Home page](https://drive.google.com/open?id=0B0nsGa77GEBpVVpPbnhOMmk4MjE1cUFSNHR5MHV3b2h4Z2ZV)
+![Home page](https://github.com/anu-007/fllaunt.in/blob/master/uploads/Screenshot%20from%202016-09-05%2020-54-12.png)
 
-![Profile page](https://drive.google.com/open?id=0B0nsGa77GEBpcDlHWlpJZ1JwRE01bFdfSEphSFdGenV3TkVN)
+![Profile page](https://github.com/anu-007/fllaunt.in/blob/master/uploads/Screenshot%20from%202016-09-05%2020-59-06.png)
 
-![Posts](https://drive.google.com/open?id=0B0nsGa77GEBpOWkzMk1URTVnYlhNMzhJa0tob0xDZG9TdGlV)
+![Posts](https://github.com/anu-007/fllaunt.in/blob/master/uploads/Screenshot%20from%202016-09-05%2020-59-22.png)
 
-![Star rating](https://drive.google.com/open?id=0B0nsGa77GEBpcFdZQWlENDA1Sm5acmdXLVREa0JmR2g0YUJR)
+![Star rating](https://github.com/anu-007/fllaunt.in/blob/master/uploads/Screenshot%20from%202016-09-05%2020-59-45.png)
 
-![login page](https://drive.google.com/open?id=0B0nsGa77GEBpTzdDcXhJbF9uZHhaeGN0bnJlTjJiblBXSXpv)
+![login page](https://github.com/anu-007/fllaunt.in/blob/master/uploads/Screenshot%20from%202016-09-05%2021-00-18.png)
 
