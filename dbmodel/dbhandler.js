@@ -32,18 +32,18 @@ module.exports = {
     conn.connect();
     const queryString =
       "SELECT * FROM usersinfo WHERE username='" + username + "';";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
       doneCb(err, row[0]); //row[0] contains full data packet of the searched entry
     });
     conn.end();
   },
 
-  comparePassword: function(candidatepassword, username, doneCb) {
+  comparePassword: (candidatepassword, username, doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
-      "SELECT usersinfo.* FROM usersinfo WHERE username='" + username + "';";
+      "SELECT usersinfo.* FROM usersinfo WHERE username = '" + username + "';";
     conn.query(queryString, function(err, row, field) {
       if (err) console.log(err);
       if (row[0].password === candidatepassword) doneCb(row[0].id);
@@ -52,7 +52,7 @@ module.exports = {
     conn.end();
   },
 
-  getUserById: function(serial, doneCb) {
+  getUserById: (serial, doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString = "SELECT * FROM usersinfo WHERE id=" + serial + ";";
@@ -63,7 +63,7 @@ module.exports = {
     conn.end();
   },
 
-  savefile: function(userfile, doneCb) {
+  savefile: (userfile, doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
@@ -74,14 +74,14 @@ module.exports = {
       "' WHERE username='" +
       userfile.user +
       "';";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
       doneCb(err, row[0]);
     });
     conn.end();
   },
 
-  saveimg: function(userimg, doneCb) {
+  saveimg: (userimg, doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
@@ -94,26 +94,26 @@ module.exports = {
       "','" +
       userimg.caption +
       "') ;";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
       doneCb(err, row[0]);
     });
     conn.end();
   },
 
-  getImages: function(doneCb) {
+  getImages: (doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
       "SELECT usersinfo.username, usersinfo.avatar, usruploads.image, usruploads.caption, usruploads.category, usruploads.serial, usruploads.star, usruploads.nousr FROM usersinfo, usruploads WHERE usersinfo.id = usruploads.id ORDER BY serial DESC";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
       doneCb(err, row);
     });
     conn.end();
   },
 
-  rate: function(val, doneCb) {
+  rate: (val, doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
@@ -124,13 +124,13 @@ module.exports = {
       " WHERE serial=" +
       val.serial +
       ";";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
     });
     conn.end();
   },
 
-  statusUpdate: function(userfile, doneCb) {
+  statusUpdate: (userfile, doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
@@ -139,31 +139,31 @@ module.exports = {
       "' WHERE username='" +
       userfile.user +
       "';";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
       doneCb(err, row[0]);
     });
     conn.end();
   },
 
-  getusr: function(serial, doneCb) {
+  getusr: (serial, doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
       "select star,nousr from usruploads WHERE serial=" + serial + ";";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
       doneCb(err, row[0]);
     });
     conn.end();
   },
 
-  gettop: function(doneCb) {
+  gettop: (doneCb) => {
     const conn = createConnection();
     conn.connect();
     var queryString =
       "SELECT image,caption FROM usruploads where nousr >= 2 ORDER BY star DESC LIMIT 7;";
-    conn.query(queryString, function(err, row, field) {
+    conn.query(queryString, (err, row, field) => {
       if (err) console.log(err);
       doneCb(err, row);
     });
